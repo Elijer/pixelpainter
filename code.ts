@@ -44,15 +44,44 @@ if (figma.editorType === 'figjam') {
   // This shows the HTML page in "ui.html".
   figma.showUI(__html__);
 
+  const hexColors = [
+    '#141010',
+    '#cf5f4e',
+    '#e5a16d',
+    '#fae2ac',
+    '#822229',
+    '#18131c',
+    '#a28284'
+  ];
+
+  const rgbColors = hexColors.map(hex => {
+    // Extract the three components of the hex color code
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r: r / 255, g: g / 255, b: b / 255 };
+  });
+
   // Create a rectangle (box) on the canvas
   const box = figma.createRectangle();
   box.resize(100, 100);
   box.x = figma.viewport.center.x - 50;
   box.y = figma.viewport.center.y - 50;
+  
+
+  let currentColor = 1
+
+  function createBox(x: number, y: number){
+    const newBox = figma.createRectangle();
+    newBox.resize(100, 100)
+    newBox.x = x
+    newBox.y = y
+    newBox.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+  }
 
   // Function to move the box
   function moveBox(direction: string) {
-    const step = 20; // pixels to move per key press
+    const step = 100; // pixels to move per key press
     switch (direction) {
       case 'W':
         box.y -= step;
@@ -66,12 +95,57 @@ if (figma.editorType === 'figjam') {
       case 'D':
         box.x += step;
         break;
+      case 'U':
+        createBox(box.x, box.y - step)
+        break
+      case 'H':
+          createBox(box.x - step, box.y)
+          break
+      case 'J':
+        createBox(box.x, box.y + step)
+        break
+      case 'K':
+        createBox(box.x + step, box.y)
+        break
+      case 'N':
+          createBox(box.x, box.y)
+          break
+      case '1':
+        currentColor = 1
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break
+      case '2':
+        currentColor = 2;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
+      case '3':
+        currentColor = 3;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
+      case '4':
+        currentColor = 4;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
+      case '5':
+        currentColor = 5;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
+      case '6':
+        currentColor = 6;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
+      case '7':
+        currentColor = 7;
+        box.fills = [{ type: 'SOLID', color:  rgbColors[currentColor-1]}];
+        break;
     }
   }
 
   // Listen for key presses
   figma.ui.onmessage = (msg) => {
+    console.log(msg)
     if (msg.type === 'keypress') {
+      console.log(msg.key)
       moveBox(msg.key);
     }
   };

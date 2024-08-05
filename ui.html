@@ -3,8 +3,9 @@
 document.getElementById('startBtn').onclick = () => {
   document.body.focus(); // Ensure the body can receive key events
   document.body.onkeydown = (event) => {
+    console.log(event)
     const key = event.key.toUpperCase();
-    if (['W', 'A', 'S', 'D'].includes(key)) {
+    if (['W', 'A', 'S', 'D', 'U', 'H', 'J', 'K', 'N', '1', '2', '3', '4', '5', '6', '7'].includes(key)) {
       parent.postMessage({ pluginMessage: { type: 'keypress', key } }, '*');
     }
   };
