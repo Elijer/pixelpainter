@@ -1,3 +1,5 @@
+![image](https://thornberry-obsidian-general.s3.us-east-2.amazonaws.com/attachments/a3a12907dcd839ba44a15646df032ef7.png)
+
 # About
 This is a somewhat simply Figma plugin that allows Figma users to draw art one box at a time, using a limited and unified palette of oranges, reds and browns. The plugin has a UI panel when initialized that lists the intructions, but you can also view them here:
 
@@ -5,6 +7,8 @@ This is a somewhat simply Figma plugin that allows Figma users to draw art one b
 - **Paint directionally:** U, H, J, K
 - **Paint at current position:** N
 - **Change Color:** 3, 4, 5, 6, 7, 8
+
+![image](https://thornberry-obsidian-general.s3.us-east-2.amazonaws.com/attachments/1c78da96e96db690a4c49b244a2736af.png)
 
 # Using this Unofficial Figma Plugin
 Below are the steps to get your plugin running. You can also find instructions at:
@@ -47,3 +51,5 @@ We recommend writing TypeScript code using Visual Studio code:
     you reopen Visual Studio Code.
 
 That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+
+![image](https://thornberry-obsidian-general.s3.us-east-2.amazonaws.com/attachments/9c1d1e8d1414533f7fa5b742de1f7f8c.png)
