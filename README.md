@@ -1,7 +1,11 @@
 ![image](https://thornberry-obsidian-general.s3.us-east-2.amazonaws.com/attachments/a3a12907dcd839ba44a15646df032ef7.png)
 
 # About
-This is a somewhat simply Figma plugin that allows Figma users to draw art one box at a time, using a limited and unified palette of oranges, reds and browns. The plugin has a UI panel when initialized that lists the intructions, but you can also view them here:
+This is a somewhat simply Figma plugin that allows Figma users to draw art one box at a time, using a limited and unified palette of oranges, reds and browns.
+
+[Blog writeup on process of building this plugin](https://elijer.github.io/garden/Projects/Building-a-Figma-Plugin)
+
+The plugin has a UI panel when initialized that lists the intructions, but you can also view them here:
 
 - **Movement**: W, A, S, D
 - **Paint directionally:** U, H, J, K
