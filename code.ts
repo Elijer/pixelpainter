@@ -28,27 +28,16 @@ const hexToRgb = (hex: string) => {
   return { r, g, b };
 };
 
-const handleFigma = () => {
-  figma.ui.onmessage = (msg: { type: string, count: number }) => {
-    if (msg.type === 'create-shapes') {
-      const nodes: SceneNode[] = Array.from({ length: msg.count }, (_, i) => 
-        createRectangle(i * 150, 0, { r: 1, g: 0.5, b: 0 })
-      );
-      nodes.forEach(node => figma.currentPage.appendChild(node));
-      figma.currentPage.selection = nodes;
-      figma.viewport.scrollAndZoomIntoView(nodes);
-    }
-    figma.closePlugin();
-  };
-};
+// Original
+const hexColors = ['#141010', '#cf5f4e', '#e5a16d', '#fae2ac', '#822229', '#524d56'];
+// const hexColors = ['#F1F1EB', '#142E34', '#FBFBF8', '#DBE5E3', '#2D4449', '#2D4449']
+const rgbColors = hexColors.map(hexToRgb);
 
 let snapCoords = (num: number, interval: number = 50) => {
   return num - (num % interval)
 }
 
 const handleFigjam = () => {
-  const hexColors = ['#141010', '#cf5f4e', '#e5a16d', '#fae2ac', '#822229', '#524d56'];
-  const rgbColors = hexColors.map(hexToRgb);
   let currentColor = 0;
 
   // let box = createRectangle((figma.viewport.center.x - 50), figma.viewport.center.y - 50, rgbColors[currentColor], true);
@@ -59,10 +48,10 @@ const handleFigjam = () => {
     const step = 100;
     const actions: { [key: string]: () => void } = {
       // 'W': () => box.y -= step,
-      'W': () => { box = moveRectangle(0, -1, box, step, rgbColors[currentColor])},
-      'A': () => { box = moveRectangle(-1, 0, box, step, rgbColors[currentColor])},
-      'S': () => { box = moveRectangle(0, +1, box, step, rgbColors[currentColor])},
-      'D': () => { box = moveRectangle(+1, 0, box, step, rgbColors[currentColor])},
+      'W': () => box = moveRectangle(0, -1, box, step, rgbColors[currentColor]),
+      'A': () => box = moveRectangle(-1, 0, box, step, rgbColors[currentColor]),
+      'S': () => box = moveRectangle(0, +1, box, step, rgbColors[currentColor]),
+      'D': () => box = moveRectangle(+1, 0, box, step, rgbColors[currentColor]),
       'U': () => createRectangle(box.x, box.y - step, rgbColors[currentColor]),
       'H': () => createRectangle(box.x - step, box.y, rgbColors[currentColor]),
       'J': () => createRectangle(box.x, box.y + step, rgbColors[currentColor]),
@@ -98,9 +87,7 @@ const handleFigjam = () => {
   });
 };
 
-if (figma.editorType === 'figma') {
-  handleFigma();
-} else if (figma.editorType === 'figjam') {
+if (figma.editorType === 'figjam') {
   handleFigjam();
 }
 
